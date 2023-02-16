@@ -16,13 +16,14 @@ import io
 thread_pool = ThreadPoolExecutor(max_workers=8)
 
 
-@itchat.msg_register(TEXT)
+@itchat.msg_register(TEXT)  #注册为处理单个聊天消息的函数
 def handler_single_msg(msg):
-    WechatChannel().handle(msg)
+    WechatChannel().handle(msg) # 表示将该消息传递给一个
+                                # WechatChannel 对象进行处理
     return None
 
 
-@itchat.msg_register(TEXT, isGroupChat=True)
+@itchat.msg_register(TEXT, isGroupChat=True)    #注册一个处理群聊消息的函数
 def handler_group_msg(msg):
     WechatChannel().handle_group(msg)
     return None
